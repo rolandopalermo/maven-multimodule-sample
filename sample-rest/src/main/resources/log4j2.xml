@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+	<Properties>
+		<Property name="LOG_PATTERN">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</Property>
+		<Property name="APP_LOG_ROOT">@filter.log4j.file@</Property>
+	</Properties>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
+		<RollingFile name="appLog" fileName="${APP_LOG_ROOT}/maven-multimodule-sample.log" filePattern="${APP_LOG_ROOT}/maven-multimodule-sample-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout pattern="${LOG_PATTERN}"/>
+			<Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+		</RollingFile>
+        <RollingFile name="errorLog" fileName="${APP_LOG_ROOT}/maven-multimodule-sample-error.log"
+            filePattern="${APP_LOG_ROOT}/maven-multimodule-sample-error-%d{yyyy-MM-dd}-%i.log" >
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.rolandopalermo" level="debug" additivity="false">
+			<AppenderRef ref="appLog" level="debug"/>
+			<AppenderRef ref="errorLog" level="error"/>
+			<AppenderRef ref="console"  level="debug"/>
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>
