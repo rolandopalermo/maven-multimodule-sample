@@ -1,3 +1,13 @@
+# What you'll need
+* JDK 1.8
+* Maven 3+
+* Eclipse | IntelliJ
+
+# Stack
+* Spring Boot
+* Spring Data REST
+* Spring Data JPA
+
 # Usage
 
 ```bash
