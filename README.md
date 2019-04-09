@@ -36,7 +36,7 @@ $ mvn spring-boot:run -PProduction
 # Samples
 ## Request
 Get a book by id
-* GET http://localhost:8080/maven-multimodule-sample/books/id
+* GET http://localhost:8080/maven-multimodule-sample/books/:id
 
 ## Response
 ```json
